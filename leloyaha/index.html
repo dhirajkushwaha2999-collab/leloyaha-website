@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leloyaha - Your Skill, Your Stage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/1920x1080/475569/475569');
+            background-size: cover;
+            background-position: center;
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+        .generated-content {
+            white-space: pre-wrap;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            min-height: 150px;
+            overflow-y: auto;
+            color: #4b5563;
+            transition: all 0.3s ease-in-out;
+        }
+        .category-card img {
+            transition: transform 0.3s ease-in-out;
+        }
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+        .category-card {
+             cursor: pointer;
+        }
+        /* Custom styles for dashboard progress bar */
+        .progress-bar-bg {
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #10b981; /* Emerald-500 */
+            border-radius: 9999px;
+            transition: width 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header Section -->
+    <header id="main-header" class="bg-white/80 backdrop-blur-sm shadow-md sticky top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-teal-600">Leloyaha</a>
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="#categories" class="text-gray-600 px-3 py-2 rounded-md hover:bg-gray-100 hover:text-teal-600 transition duration-300">Find Talent</a>
+                <a href="#how-it-works" class="text-gray-600 px-3 py-2 rounded-md hover:bg-gray-100 hover:text-teal-600 transition duration-300">How It Works</a>
+                <!-- DEMO LOGIN BUTTONS -->
+                <button id="login-student-btn" class="text-gray-600 px-3 py-2 rounded-md hover:bg-gray-100 hover:text-teal-600 transition duration-300">Log In as Student</button>
+                <button id="login-client-btn" class="text-white bg-gray-700 px-4 py-2 rounded-md hover:bg-gray-800 transition duration-300">Log In as Client</button>
+                <a href="#" class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-5 py-2 rounded-md hover:from-teal-600 hover:to-cyan-700 transition duration-300 transform hover:scale-105 shadow-md">Sign Up</a>
+            </div>
+            <button class="md:hidden flex items-center">
+                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Logged-out Main Content -->
+    <div id="logged-out-view">
+        <main>
+            <!-- Hero Section -->
+            <section class="hero-bg text-white py-24 md:py-32">
+                <div class="container mx-auto px-6 text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-shadow">Unlock Your Campus's Talent.</h1>
+                    <p class="text-lg md:text-xl text-gray-200 mb-8 text-shadow">Hire verified and skilled students for any project—from graphic design to driving.</p>
+                    <div class="max-w-2xl mx-auto">
+                        <div class="flex flex-col md:flex-row items-center bg-white rounded-md p-2 shadow-lg">
+                            <input type="text" placeholder="What service are you looking for? (e.g., Logo Design, Private Tutor)" class="w-full text-gray-800 p-3 rounded-md md:rounded-none md:rounded-l-md focus:outline-none focus:ring-2 focus:ring-teal-500">
+                            <button class="w-full md:w-auto bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-8 py-3 mt-2 md:mt-0 rounded-md md:rounded-none md:rounded-r-md hover:from-teal-600 hover:to-cyan-700 transition duration-300 font-semibold">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Popular Categories Section -->
+            <section id="categories" class="py-20 bg-white">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-center mb-12">Explore Popular Categories</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                        <div class="category-card bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300" data-category="Graphic & Design"><img src="https://placehold.co/400x300/c4b5fd/c4b5fd" alt="Graphic & Design" class="w-full h-32 object-cover"><div class="p-4 text-center"><h3 class="text-lg font-semibold">Graphic & Design</h3></div></div>
+                        <div class="category-card bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300" data-category="Digital Marketing"><img src="https://placehold.co/400x300/a7f3d0/a7f3d0" alt="Digital Marketing" class="w-full h-32 object-cover"><div class="p-4 text-center"><h3 class="text-lg font-semibold">Digital Marketing</h3></div></div>
+                        <div class="category-card bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300" data-category="Writing & Content"><img src="https://placehold.co/400x300/fde68a/fde68a" alt="Writing & Content" class="w-full h-32 object-cover"><div class="p-4 text-center"><h3 class="text-lg font-semibold">Writing & Content</h3></div></div>
+                        <div class="category-card bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300" data-category="Website Development"><img src="https://placehold.co/400x300/a5f3fc/a5f3fc" alt="Website Development" class="w-full h-32 object-cover"><div class="p-4 text-center"><h3 class="text-lg font-semibold">Website Development</h3></div></div>
+                        <div class="category-card bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300" data-category="Photography"><img src="https://placehold.co/400x300/fecaca/fecaca" alt="Photography" class="w-full h-32 object-cover"><div class="p-4 text-center"><h3 class="text-lg font-semibold">Photography</h3></div></div>
+                        <div class="category-card bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300" data-category="Personal Training"><img src="https://placehold.co/400x300/bfdbfe/bfdbfe" alt="Personal Training" class="w-full h-32 object-cover"><div class="p-4 text-center"><h3 class="text-lg font-semibold">Personal Training</h3></div></div>
+                        <div class="category-card bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300" data-category="Yoga Instruction"><img src="https://placehold.co/400x300/fbcfe8/fbcfe8" alt="A person in a yoga pose" class="w-full h-32 object-cover"><div class="p-4 text-center"><h3 class="text-lg font-semibold">Yoga Instruction</h3></div></div>
+                        <div class="category-card bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300" data-category="Driving & Errands"><img src="https://placehold.co/400x300/d1d5db/d1d5db" alt="Driving & Errands" class="w-full h-32 object-cover"><div class="p-4 text-center"><h3 class="text-lg font-semibold">Driving & Errands</h3></div></div>
+                        <div class="category-card bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300" data-category="Health Check"><img src="https://placehold.co/400x300/fca5a5/991b1b" alt="Health Check" class="w-full h-32 object-cover"><div class="p-4 text-center"><h3 class="text-lg font-semibold">Health Check</h3></div></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="talent-list" class="hidden py-20 bg-gray-50"><div class="container mx-auto px-6"><div class="flex flex-col md:flex-row justify-between md:items-center mb-12"><h2 id="talent-list-title" class="text-3xl font-bold mb-4 md:mb-0"></h2><button id="back-to-categories" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-300 transition duration-300 self-start md:self-center">← Back to All Categories</button></div><div id="talent-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div></div></section>
+
+            <div id="main-content">
+                <section class="py-20 bg-gray-50"><div class="container mx-auto px-6"><h2 class="text-3xl font-bold text-center mb-12">Meet Some of Our Top Student Talent</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-xl transition-all duration-300"><img src="https://placehold.co/400x300/9ca3af/9ca3af" alt="Profile picture of Akash S., a graphic designer" class="w-full h-56 object-cover"><div class="p-6"><h3 class="text-xl font-bold mb-1 flex items-center">Akash S. <span class="ml-2 bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Verified</span></h3><p class="text-teal-600 font-semibold mb-2">Graphic Designer</p><div class="flex items-center mb-4"><span class="text-yellow-500">★★★★★</span><span class="text-gray-600 ml-2">(4.9)</span></div><p class="text-gray-600 mb-4">"Creating visuals that tell a story and make brands stand out."</p><a href="#" class="w-full text-center bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-4 py-2 rounded-md hover:from-teal-600 hover:to-cyan-700 transition duration-300 inline-block font-semibold">View Profile</a></div></div><div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-xl transition-all duration-300"><img src="https://placehold.co/400x300/4b5563/4b5563" alt="Profile picture of Priya M., a social media marketer" class="w-full h-56 object-cover"><div class="p-6"><h3 class="text-xl font-bold mb-1 flex items-center">Priya M. <span class="ml-2 bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Verified</span></h3><p class="text-teal-600 font-semibold mb-2">Social Media Marketer</p><div class="flex items-center mb-4"><span class="text-yellow-500">★★★★★</span><span class="text-gray-600 ml-2">(4.8)</span></div><p class="text-gray-600 mb-4">"Helping small businesses grow their online presence and engage with customers."</p><a href="#" class="w-full text-center bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-4 py-2 rounded-md hover:from-teal-600 hover:to-cyan-700 transition duration-300 inline-block font-semibold">View Profile</a></div></div><div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-xl transition-all duration-300"><img src="https://placehold.co/400x300/6b7280/6b7280" alt="Profile picture of Rohan K., a part-time driver" class="w-full h-56 object-cover"><div class="p-6"><h3 class="text-xl font-bold mb-1 flex items-center">Rohan K. <span class="ml-2 bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Verified</span></h3><p class="text-teal-600 font-semibold mb-2">Part-Time Driver</p><div class="flex items-center mb-4"><span class="text-yellow-500">★★★★★</span><span class="text-gray-600 ml-2">(5.0)</span></div><p class="text-gray-600 mb-4">"Safe and reliable driving for your short trips, airport drops, or family outings."</p><a href="#" class="w-full text-center bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-4 py-2 rounded-md hover:from-teal-600 hover:to-cyan-700 transition duration-300 inline-block font-semibold">View Profile</a></div></div></div></div></section>
+                
+                <!-- NEW: Success Stories Section -->
+                <section class="py-20 bg-white"><div class="container mx-auto px-6"><h2 class="text-3xl font-bold text-center mb-12">Real Skills, Real Income</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center"><div class="bg-gray-50 p-8 rounded-lg shadow-lg"><img src="https://placehold.co/100x100/fde68a/fde68a" class="w-24 h-24 rounded-full mx-auto -mt-20 mb-4 border-4 border-white" alt="Kavita J."><h3 class="font-bold text-lg">Kavita J.</h3><p class="text-sm text-gray-500 mb-2">Content Writer</p><p class="italic text-gray-700">"I earned ₹8,000 in my first month writing blog posts for local startups. Leloyaha gave me the confidence to start my freelance career!"</p></div><div class="bg-gray-50 p-8 rounded-lg shadow-lg"><img src="https://placehold.co/100x100/a5f3fc/a5f3fc" class="w-24 h-24 rounded-full mx-auto -mt-20 mb-4 border-4 border-white" alt="Suresh R."><h3 class="font-bold text-lg">Suresh R.</h3><p class="text-sm text-gray-500 mb-2">Web Developer</p><p class="italic text-gray-700">"Building a small website for a client was an amazing experience. It was my first paid project and it's now in my portfolio."</p></div><div class="bg-gray-50 p-8 rounded-lg shadow-lg"><img src="https://placehold.co/100x100/fecaca/fecaca" class="w-24 h-24 rounded-full mx-auto -mt-20 mb-4 border-4 border-white" alt="Deepa N."><h3 class="font-bold text-lg">Deepa N.</h3><p class="text-sm text-gray-500 mb-2">Photographer</p><p class="italic text-gray-700">"I was hired for a birthday party shoot through Leloyaha. The platform is simple and payments are secure. Highly recommended!"</p></div></div></div></section>
+
+                <section class="py-20 bg-gray-50"><div class="container mx-auto px-6"><h2 class="text-3xl font-bold text-center mb-12">What Our Clients Say</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><div class="bg-white p-8 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform duration-300"><p class="text-gray-600 mb-6 italic">"Leloyaha connected us with a fantastic student designer who brought our vision to life faster than we could have imagined. An absolutely seamless experience!"</p><div class="flex items-center"><img src="https://placehold.co/100x100/fca5a5/fca5a5" class="w-12 h-12 rounded-full mr-4" alt="Client 1"><div><p class="font-bold">Ananya Sharma</p><p class="text-sm text-gray-500">Founder, Brew Cafe</p></div></div></div><div class="bg-white p-8 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform duration-300"><p class="text-gray-600 mb-6 italic">"Finding a reliable part-time driver was a hassle. With Leloyaha, we found a verified student driver who was professional and punctual. Highly recommended!"</p><div class="flex items-center"><img src="https://placehold.co/100x100/818cf8/818cf8" class="w-12 h-12 rounded-full mr-4" alt="Client 2"><div><p class="font-bold">Vikram Singh</p><p class="text-sm text-gray-500">Local Resident</p></div></div></div><div class="bg-white p-8 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform duration-300"><p class="text-gray-600 mb-6 italic">"The quality of content from a student writer was top-notch. It's an incredible platform for startups on a budget to access fresh, creative talent."</p><div class="flex items-center"><img src="https://placehold.co/100x100/f9a8d4/f9a8d4" class="w-12 h-12 rounded-full mr-4" alt="Client 3"><div><p class="font-bold">Priya Desai</p><p class="text-sm text-gray-500">Marketing Head, TechVibes</p></div></div></div></div></div></section>
+                
+                <!-- AI Feature for Businesses Section -->
+                <section id="for-businesses" class="py-20 bg-teal-50/50">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl font-bold">Effortlessly Find the Perfect Student Talent</h2>
+                            <p class="text-lg text-gray-600 mt-2">Our AI-powered tools help you craft the perfect job post to attract the best candidates.</p>
+                        </div>
+                        <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                            <label for="job-idea" class="block text-lg font-semibold mb-2">Start with a simple idea:</label>
+                            <input type="text" id="job-idea" placeholder="e.g., 'Need a logo for my new coffee shop'" class="w-full text-gray-800 p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                            <button id="generate-job-post" class="w-full bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-8 py-3 mt-4 rounded-md hover:from-teal-600 hover:to-cyan-700 transition duration-300 font-semibold transform hover:scale-105">
+                                ✨ Generate Job Description
+                            </button>
+                            <div id="job-post-output" class="generated-content">Your detailed job description will appear here...</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AI Feature for Students Section -->
+                <section id="for-students" class="py-20 bg-cyan-50/50">
+                    <div class="container mx-auto px-6">
+                         <div class="text-center mb-12">
+                            <h2 class="text-3xl font-bold">Build a Standout Profile That Gets You Hired</h2>
+                            <p class="text-lg text-gray-600 mt-2">Don't know what to write? Let our AI assistant create a professional bio for you.</p>
+                        </div>
+                        <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                            <label for="student-skills" class="block text-lg font-semibold mb-2">List your skills & experiences:</label>
+                            <textarea id="student-skills" rows="5" placeholder="e.g.,&#10;- Graphic design using Canva and Figma&#10;- Internship at a local startup&#10;- Good at writing articles&#10;- Passionate about social media" class="w-full text-gray-800 p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-500"></textarea>
+                            <button id="generate-bio" class="w-full bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-8 py-3 mt-4 rounded-md hover:from-teal-600 hover:to-cyan-700 transition duration-300 font-semibold transform hover:scale-105">
+                                ✨ Generate My Profile Bio
+                            </button>
+                            <div id="bio-output" class="generated-content">Your professional profile bio will appear here...</div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="how-it-works" class="py-20 bg-white"><div class="container mx-auto px-6"><h2 class="text-3xl font-bold text-center mb-12">Get Your Project Done in 3 Simple Steps</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center"><div><div class="flex items-center justify-center h-20 w-20 bg-teal-100 text-teal-600 rounded-full mx-auto mb-6"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div><h3 class="text-xl font-semibold mb-2">1. Post a Job</h3><p class="text-gray-600">Describe the task you need done. It's free, simple, and takes just a few minutes to get started.</p></div><div><div class="flex items-center justify-center h-20 w-20 bg-teal-100 text-teal-600 rounded-full mx-auto mb-6"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div><h3 class="text-xl font-semibold mb-2">2. Hire a Student</h3><p class="text-gray-600">Browse through verified student profiles, check their reviews, and hire the perfect talent for your needs.</p></div><div><div class="flex items-center justify-center h-20 w-20 bg-teal-100 text-teal-600 rounded-full mx-auto mb-6"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div><h3 class="text-xl font-semibold mb-2">3. Pay Securely</h3><p class="text-gray-600">Pay through our secure platform only after the work is completed and you are 100% satisfied.</p></div></div></div></section>
+            </div>
+        </main>
+    </div>
+
+    <!-- STUDENT DASHBOARD (Hidden by default) -->
+    <div id="student-dashboard" class="hidden">
+        <header class="bg-white shadow-sm sticky top-0 z-50">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-teal-600">Leloyaha (Student)</a>
+                <button class="logout-btn bg-red-500 text-white px-5 py-2 rounded-md hover:bg-red-600 transition duration-300">Log Out</button>
+            </nav>
+        </header>
+        <main class="container mx-auto p-6">
+            <!-- Welcome Banner -->
+            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                <h1 class="text-3xl font-bold">Hi Ramesh 👋</h1>
+                <p class="text-gray-600 mt-1">"The secret of getting ahead is getting started." Let's make today productive!</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left Column (Sidebar) -->
+                <div class="lg:col-span-1 space-y-8">
+                    <!-- Earnings & Wallet -->
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-bold mb-4">Earnings Snapshot</h2>
+                        <div class="text-center bg-emerald-50 p-4 rounded-lg">
+                            <p class="text-sm text-emerald-700">This Month's Earnings</p>
+                            <p class="text-4xl font-bold text-emerald-600">₹3,200</p>
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-600 mb-1">Monthly Goal: ₹5,000</p>
+                            <div class="progress-bar-bg h-3 w-full">
+                                <div class="progress-bar-fill bg-emerald-500" style="width: 64%;"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1 text-center">You're just 2 more jobs away!</p>
+                        </div>
+                    </div>
+
+                    <!-- Achievements -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-bold mb-4">Achievements</h2>
+                        <div class="flex flex-wrap gap-4">
+                            <div class="text-center p-2 bg-yellow-100 rounded-lg" title="Completed your first job!"><span class="text-3xl">🎉</span><p class="text-xs">First Job</p></div>
+                            <div class="text-center p-2 bg-blue-100 rounded-lg" title="Received a 5-star rating!"><span class="text-3xl">⭐</span><p class="text-xs">5-Star Rated</p></div>
+                            <div class="text-center p-2 bg-gray-200 rounded-lg opacity-50" title="Complete 5 jobs to unlock"><span class="text-3xl">💼</span><p class="text-xs">Rising Talent</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column (Main Content) -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Job Recommendations -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-bold mb-4">Recommended For You</h2>
+                        <div class="space-y-4">
+                            <div class="border p-4 rounded-lg hover:bg-gray-50 transition duration-300 flex justify-between items-center"><div><h3 class="font-bold text-lg">Logo Designer for a New Cafe</h3><p class="text-sm text-gray-500">Brew Cafe - Posted 2 hours ago</p></div><button class="bg-teal-500 text-white px-4 py-2 rounded-md text-sm hover:bg-teal-600">Apply Now</button></div>
+                            <div class="border p-4 rounded-lg hover:bg-gray-50 transition duration-300 flex justify-between items-center"><div><h3 class="font-bold text-lg">Social Media Post Designer</h3><p class="text-sm text-gray-500">TechVibes - Posted 1 day ago</p></div><button class="bg-teal-500 text-white px-4 py-2 rounded-md text-sm hover:bg-teal-600">Apply Now</button></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Community Spotlight -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                         <h2 class="text-xl font-bold mb-4">Community Spotlight</h2>
+                         <div class="bg-cyan-50 border-l-4 border-cyan-500 p-4 rounded-md">
+                             <p class="text-gray-700">"Priya M. just completed her 5th social media project! 🎉"</p>
+                             <a href="#" class="text-cyan-600 font-semibold hover:underline mt-2 inline-block text-sm">See her story →</a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- CLIENT DASHBOARD (Hidden by default) -->
+    <div id="client-dashboard" class="hidden">
+        <header class="bg-white shadow-md sticky top-0 z-50">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-teal-600">Leloyaha (Client)</a>
+                <button class="logout-btn bg-red-500 text-white px-5 py-2 rounded-md hover:bg-red-600 transition duration-300">Log Out</button>
+            </nav>
+        </header>
+        <main class="container mx-auto p-6">
+             <!-- Welcome Banner -->
+            <div class="bg-gradient-to-r from-gray-700 to-gray-900 text-white p-8 rounded-lg shadow-lg mb-8">
+                <h1 class="text-3xl font-bold">Hi Ankit 👋 Need talent fast? Post your job and hire verified students today.</h1>
+            </div>
+            
+            <!-- Quick Actions & Search -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div>
+                        <h2 class="text-xl font-bold mb-4">Quick Actions</h2>
+                        <div class="flex space-x-3">
+                            <button class="flex-1 text-center p-3 bg-teal-500 text-white font-semibold rounded-md hover:bg-teal-600 transition duration-300">✅ Post a Job</button>
+                            <button class="flex-1 text-center p-3 bg-gray-200 rounded-md hover:bg-gray-300 transition duration-300">✅ Browse Student Profiles</button>
+                            <button class="flex-1 text-center p-3 bg-gray-200 rounded-md hover:bg-gray-300 transition duration-300">✅ Manage Applicants</button>
+                        </div>
+                    </div>
+                    <div>
+                         <label for="client-search" class="block text-lg font-semibold mb-2">Find talent now:</label>
+                         <input id="client-search" type="text" placeholder="e.g., Graphic Designers, Writers, Tutors..." class="w-full text-gray-800 p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left Column -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Recommended Students -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-bold mb-4">Recommended Students for You</h2>
+                        <div class="space-y-4">
+                            <!-- Student 1 -->
+                            <div class="border p-4 rounded-lg flex items-center justify-between hover:bg-gray-50">
+                                <div class="flex items-center">
+                                    <img src="https://placehold.co/100x100/9ca3af/9ca3af" class="w-16 h-16 rounded-full mr-4" alt="Akash S.">
+                                    <div>
+                                        <h3 class="font-bold text-lg flex items-center">Akash S. <span class="ml-2 bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Verified</span></h3>
+                                        <p class="text-sm text-gray-500">Graphic Designer - ★ 4.9</p>
+                                    </div>
+                                </div>
+                                <button class="bg-teal-100 text-teal-700 px-4 py-1 rounded-md text-sm font-semibold hover:bg-teal-200">View Profile</button>
+                            </div>
+                             <!-- Student 2 -->
+                            <div class="border p-4 rounded-lg flex items-center justify-between hover:bg-gray-50">
+                                <div class="flex items-center">
+                                    <img src="https://placehold.co/100x100/4b5563/4b5563" class="w-16 h-16 rounded-full mr-4" alt="Priya M.">
+                                    <div>
+                                        <h3 class="font-bold text-lg flex items-center">Priya M. <span class="ml-2 bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Verified</span></h3>
+                                        <p class="text-sm text-gray-500">Social Media Marketer - ★ 4.8</p>
+                                    </div>
+                                </div>
+                                <button class="bg-teal-100 text-teal-700 px-4 py-1 rounded-md text-sm font-semibold hover:bg-teal-200">View Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column -->
+                <div class="lg:col-span-1">
+                    <!-- Job Management -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-bold mb-4">Job Management</h2>
+                        <div class="space-y-4">
+                             <!-- Job 1 -->
+                            <div>
+                                <h3 class="font-semibold">Logo for Brew Cafe</h3>
+                                <p class="text-sm text-gray-600"><span class="font-bold text-green-600">2 applicants</span> pending review.</p>
+                            </div>
+                            <hr>
+                             <!-- Job 2 -->
+                             <div>
+                                <h3 class="font-semibold">Social Media Posts</h3>
+                                <p class="text-sm text-gray-600"><span class="font-bold text-blue-600">1 interview</span> scheduled.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="container mx-auto px-6 text-center">
+            <a href="#" class="text-3xl font-bold text-white mb-4 inline-block">Leloyaha</a>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.415 2.175 8.796 2.163 12 2.163zm0 1.626c-3.159 0-3.51.01-4.745.068-2.628.119-3.928 1.424-4.045 4.045-.058 1.235-.068 1.588-.068 4.745s.01 3.51.068 4.745c.117 2.622 1.417 3.928 4.045 4.045 1.235.058 1.586.068 4.745.068s3.51-.01 4.745-.068c2.628-.119 3.928-1.424 4.045-4.045.058-1.235.068-1.588.068-4.745s-.01-3.51-.068-4.745c-.117-2.622-1.417-3.928-4.045-4.045-1.235-.058-1.586-.068-4.745-.068zm0 5.478a5.163 5.163 0 100 10.326 5.163 5.163 0 000-10.326zm0 1.626a3.537 3.537 0 110 7.072 3.537 3.537 0 010-7.072z" clip-rule="evenodd" /></svg></a>
+            </div>
+            <div class="flex justify-center space-x-4 mb-4 text-sm text-gray-400"><a href="#" class="hover:text-white">About Us</a><span>&middot;</span><a href="#" class="hover:text-white">Contact</a><span>&middot;</span><a href="#" class="hover:text-white">FAQs</a><span>&middot;</span><a href="#" class="hover:text-white">Terms of Service</a></div>
+            <p class="text-sm text-gray-500">&copy; 2025 Leloyaha. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- STUDENT DATABASE ---
+        const students = [
+            { name: "Akash S.", category: "Graphic & Design", rating: 4.9, bio: "2+ years of experience in logo design and branding. Proficient in Adobe Suite.", imageSeed: "1", verified: true },{ name: "Neha Sharma", category: "Graphic & Design", rating: 4.8, bio: "Specializes in modern UI/UX design for mobile apps. Passionate about clean interfaces.", imageSeed: "2", verified: true },{ name: "Ravi Kumar", category: "Graphic & Design", rating: 4.7, bio: "Creative illustrator and poster designer. Loves bringing ideas to life with vibrant colors.", imageSeed: "3", verified: true },{ name: "Priya M.", category: "Digital Marketing", rating: 4.8, bio: "Expert in social media management and content strategy across Instagram and Facebook.", imageSeed: "4", verified: true },{ name: "Amit Singh", category: "Digital Marketing", rating: 4.9, bio: "Certified Google Ads specialist. Focused on driving traffic and generating leads.", imageSeed: "5", verified: true },{ name: "Sunita Rao", category: "Digital Marketing", rating: 4.6, bio: "Skilled in SEO and email marketing campaigns that deliver results.", imageSeed: "6", verified: true },{ name: "Kavita Joshi", category: "Writing & Content", rating: 4.9, bio: "Creative writer with experience in blog posts, articles, and website copy.", imageSeed: "7", verified: true },{ name: "Rajesh Gupta", category: "Writing & Content", rating: 4.7, bio: "Technical writer who can simplify complex topics. Excellent research skills.", imageSeed: "8", verified: true },{ name: "Priya Singh", category: "Writing & Content", rating: 4.8, bio: "Content creator specializing in engaging social media captions and scripts.", imageSeed: "9", verified: true },{ name: "Suresh Reddy", category: "Website Development", rating: 4.9, bio: "Full-stack developer specializing in React and Node.js. Builds fast, responsive websites.", imageSeed: "10", verified: true },{ name: "Meera Iyer", category: "Website Development", rating: 4.8, bio: "Frontend developer with a keen eye for design. Expert in HTML, CSS, and JavaScript.", imageSeed: "11", verified: true },{ name: "Arun Kumar", category: "Website Development", rating: 4.7, bio: "WordPress expert who can build and customize themes and plugins for any business need.", imageSeed: "12", verified: true },{ name: "Vikram Kumar", category: "Photography", rating: 5.0, bio: "Event and portrait photographer with professional gear. Captures moments beautifully.", imageSeed: "13", verified: true },{ name: "Deepa Nair", category: "Photography", rating: 4.8, bio: "Specializes in product and food photography for e-commerce and social media.", imageSeed: "14", verified: true },{ name: "Sanjay Patel", category: "Photography", rating: 4.7, bio: "Drone photographer and videographer, perfect for real estate and events.", imageSeed: "15", verified: true },{ name: "Arjun Mehta", category: "Personal Training", rating: 4.9, bio: "Certified personal trainer focused on strength training and body conditioning.", imageSeed: "16", verified: true },{ name: "Sneha Reddy", category: "Personal Training", rating: 4.8, bio: "Fitness coach specializing in HIIT and functional training for all fitness levels.", imageSeed: "17", verified: true },{ name: "Rahul Verma", category: "Personal Training", rating: 4.9, bio: "Helps clients achieve their weight loss goals through customized diet and workout plans.", imageSeed: "18", verified: true },{ name: "Pooja Desai", category: "Yoga Instruction", rating: 5.0, bio: "Certified yoga instructor with expertise in Vinyasa and Hatha yoga for all levels.", imageSeed: "19", verified: true },{ name: "Aditi Shah", category: "Yoga Instruction", rating: 4.9, bio: "Specializes in meditation and mindfulness practices for stress reduction.", imageSeed: "20", verified: true },{ name: "Rishi Sharma", category: "Yoga Instruction", rating: 4.8, bio: "Experienced in power yoga and flexibility training for athletes and beginners.", imageSeed: "21", verified: true },{ name: "Rohan K.", category: "Driving & Errands", rating: 5.0, bio: "5+ years of safe driving experience. Punctual and reliable for all your transport needs.", imageSeed: "22", verified: true },{ name: "Imran Khan", category: "Driving & Errands", rating: 4.8, bio: "Verified driver with a clean record. Available for city and outstation trips.", imageSeed: "23", verified: true },{ name: "Manoj Kumar", category: "Driving & Errands", rating: 4.9, bio: "Friendly and professional driver, perfect for airport pickups and daily commutes.", imageSeed: "24", verified: true },{ name: "Sunita Patel", category: "Health Check", rating: 4.9, bio: "Nursing student available for basic health checkups like blood pressure and sugar monitoring.", imageSeed: "25", verified: true }, { name: "Ravi Sharma", category: "Health Check", rating: 4.8, bio: "Certified in First Aid and CPR. Available for event support and basic health assistance.", imageSeed: "26", verified: true }, { name: "Anjali Mehta", category: "Health Check", rating: 4.9, bio: "Physiotherapy student offering assistance with basic exercises and mobility support for the elderly.", imageSeed: "27", verified: true },
+        ];
+
+        // --- DOM ELEMENTS ---
+        const loggedOutView = document.getElementById('logged-out-view');
+        const studentDashboard = document.getElementById('student-dashboard');
+        const clientDashboard = document.getElementById('client-dashboard');
+        const loginStudentBtn = document.getElementById('login-student-btn');
+        const loginClientBtn = document.getElementById('login-client-btn');
+        const logoutBtns = document.querySelectorAll('.logout-btn');
+        const categoryCards = document.querySelectorAll('.category-card');
+        const mainContent = document.getElementById('main-content');
+        const talentListSection = document.getElementById('talent-list');
+        const talentListTitle = document.getElementById('talent-list-title');
+        const talentGrid = document.getElementById('talent-grid');
+        const backToCategoriesBtn = document.getElementById('back-to-categories');
+        
+        // --- DASHBOARD SWITCHING LOGIC ---
+        function showStudentDashboard() {
+            loggedOutView.classList.add('hidden');
+            clientDashboard.classList.add('hidden');
+            studentDashboard.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function showClientDashboard() {
+            loggedOutView.classList.add('hidden');
+            studentDashboard.classList.add('hidden');
+            clientDashboard.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function showLoggedOutView() {
+            studentDashboard.classList.add('hidden');
+            clientDashboard.classList.add('hidden');
+            loggedOutView.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        loginStudentBtn.addEventListener('click', showStudentDashboard);
+        loginClientBtn.addEventListener('click', showClientDashboard);
+        logoutBtns.forEach(btn => btn.addEventListener('click', showLoggedOutView));
+
+        // --- TALENT SHOWCASE LOGIC ---
+        function showTalentForCategory(category) {
+            const filteredStudents = students.filter(student => student.category === category);
+            talentListTitle.textContent = `Top Talent in ${category}`;
+            talentGrid.innerHTML = filteredStudents.map(student => {
+                let seed = student.imageSeed;
+                const colors = ['e0e7ff', 'c7d2fe', 'a5b4fc', '818cf8', '6366f1', '4f46e5', '4338ca'];
+                const color = colors[seed % colors.length];
+                const verifiedBadge = student.verified ? `<span class="ml-2 bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Verified</span>` : '';
+                return `
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-xl transition-all duration-300">
+                    <img src="https://placehold.co/400x300/${color}/${color}" alt="Profile picture of ${student.name}" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-1 flex items-center">${student.name} ${verifiedBadge}</h3>
+                        <div class="flex items-center mb-4"><span class="text-yellow-500">★★★★★</span><span class="text-gray-600 ml-2">(${student.rating})</span></div>
+                        <p class="text-gray-600 mb-4 h-20 overflow-hidden">"${student.bio}"</p>
+                        <a href="#" class="w-full text-center bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-4 py-2 rounded-md hover:from-teal-600 hover:to-cyan-700 transition duration-300 inline-block font-semibold">View Profile</a>
+                    </div>
+                </div>
+            `}).join('');
+            mainContent.classList.add('hidden');
+            talentListSection.classList.remove('hidden');
+            window.scrollTo(0, talentListSection.offsetTop - 100);
+        }
+
+        function showMainContent() {
+            mainContent.classList.remove('hidden');
+            talentListSection.classList.add('hidden');
+        }
+
+        categoryCards.forEach(card => card.addEventListener('click', () => {
+            const category = card.dataset.category;
+            showTalentForCategory(category);
+        }));
+
+        backToCategoriesBtn.addEventListener('click', showMainContent);
+
+        // --- GEMINI API SCRIPT ---
+        const jobPostBtn = document.getElementById('generate-job-post');
+        const jobIdeaInput = document.getElementById('job-idea');
+        const jobPostOutput = document.getElementById('job-post-output');
+        const bioBtn = document.getElementById('generate-bio');
+        const studentSkillsInput = document.getElementById('student-skills');
+        const bioOutput = document.getElementById('bio-output');
+        const apiKey = "";
+
+        async function callGemini(prompt, buttonElement, outputElement) {
+            buttonElement.disabled = true;
+            const originalButtonText = buttonElement.innerHTML;
+            buttonElement.innerHTML = `<div class="flex items-center justify-center"><svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg><span>Generating...</span></div>`;
+            outputElement.textContent = 'Please wait while our AI assistant is working...';
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            try {
+                const payload = { contents: [{ parts: [{ text: prompt }] }] };
+                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (!response.ok) throw new Error(`API error: ${response.statusText}`);
+                const data = await response.json();
+                const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                outputElement.textContent = text ? text : 'Sorry, we could not generate a response. Please try again.';
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                outputElement.textContent = 'An error occurred. Please check the console for details and try again later.';
+            } finally {
+                buttonElement.disabled = false;
+                buttonElement.innerHTML = originalButtonText;
+            }
+        }
+        
+        if (jobPostBtn) {
+            jobPostBtn.addEventListener('click', () => {
+                const jobIdea = jobIdeaInput.value;
+                if (!jobIdea) { alert('Please enter a job idea first.'); return; }
+                const prompt = `You are an expert project manager hiring for a startup. Write a detailed, professional, and friendly job description for a student freelancer based on this idea: "${jobIdea}". The tone should be encouraging and clear. Structure the output with the following sections using markdown for formatting:\n- **Project Overview:** (A brief, engaging summary of the project)\n- **What We're Looking For:** (Describe the ideal student candidate)\n- **Key Responsibilities:** (A bulleted list of tasks)\n- **Required Skills:** (A bulleted list of essential skills)`;
+                callGemini(prompt, jobPostBtn, jobPostOutput);
+            });
+        }
+
+        if (bioBtn) {
+            bioBtn.addEventListener('click', () => {
+                const studentSkills = studentSkillsInput.value;
+                if (!studentSkills) { alert('Please list your skills and experiences first.'); return; }
+                const prompt = `You are a professional career coach. Write a compelling and confident bio for a student's freelance profile on a platform called Leloyaha. The bio should be written in the first person. Use the following skills and experiences provided by the student:\n---\n${studentSkills}\n---\nThe bio should be about 3-4 paragraphs long, highlight their key strengths, and convey passion and reliability. Do not just list the skills; weave them into a narrative.`;
+                callGemini(prompt, bioBtn, bioOutput);
+            });
+        }
+    </script>
+</body>
+</html>
+
