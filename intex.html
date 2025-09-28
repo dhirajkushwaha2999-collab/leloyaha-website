@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leloyaha - Your Skill, Your Stage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/1920x1080/475569/475569');
+            background-size: cover;
+            background-position: center;
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+        .category-card img {
+            transition: transform 0.3s ease-in-out;
+        }
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+        .category-card {
+             cursor: pointer;
+        }
+        .progress-bar-bg {
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #10b981;
+            border-radius: 9999px;
+            transition: width 0.5s ease-in-out;
+        }
+        .drop-zone-active {
+            border-color: #10b981;
+            background-color: #f0fdf4;
+        }
+        #chat-modal {
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- All Views Container -->
+    <div>
+        <!-- Logged-out Main Content -->
+        <div id="logged-out-view">
+            <header id="main-header" class="bg-white/80 backdrop-blur-sm shadow-md sticky top-0 z-50 transition-all duration-300">
+                <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                    <a href="#" class="text-2xl font-bold text-teal-600">Leloyaha</a>
+                    <div class="hidden md:flex items-center space-x-2">
+                        <a href="#categories-section" class="text-gray-600 px-3 py-2 rounded-md hover:bg-gray-100 hover:text-teal-600 transition duration-300">Find Talent</a>
+                        <a href="#how-it-works" class="text-gray-600 px-3 py-2 rounded-md hover:bg-gray-100 hover:text-teal-600 transition duration-300">How It Works</a>
+                        <button id="login-student-btn" class="text-gray-600 px-3 py-2 rounded-md hover:bg-gray-100 hover:text-teal-600 transition duration-300">Log In as Student</button>
+                        <button id="login-client-btn" class="text-white bg-gray-700 px-4 py-2 rounded-md hover:bg-gray-800 transition duration-300">Log In as Client</button>
+                        <a href="#registration-section" class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-5 py-2 rounded-md hover:from-teal-600 hover:to-cyan-700 transition duration-300 transform hover:scale-105 shadow-md">Register as Student</a>
+                    </div>
+                    <button id="mobile-menu-btn" class="md:hidden flex items-center">
+                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </nav>
+                <div id="mobile-menu" class="hidden md:hidden">
+                    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                        <a href="#categories-section" class="mobile-menu-link block text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md">Find Talent</a>
+                        <a href="#how-it-works" class="mobile-menu-link block text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md">How It Works</a>
+                        <button id="mobile-login-student-btn" class="mobile-menu-link w-full text-left text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md">Log In as Student</button>
+                        <button id="mobile-login-client-btn" class="mobile-menu-link w-full text-left text-gray-700 hover:bg-gray-200 px-3 py-2 rounded-md">Log In as Client</button>
+                        <a href="#registration-section" class="mobile-menu-link block bg-teal-500 text-white hover:bg-teal-600 px-3 py-2 rounded-md">Register as Student</a>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <section class="hero-bg text-white py-24 md:py-32">
+                    <div class="container mx-auto px-6 text-center">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4 text-shadow">Unlock Your Campus's Talent.</h1>
+                        <p class="text-lg md:text-xl text-gray-200 mb-8 text-shadow">Hire verified and skilled students for any project—from graphic design to tour planning.</p>
+                        <div class="max-w-2xl mx-auto">
+                            <div class="flex flex-col md:flex-row items-center bg-white rounded-md p-2 shadow-lg">
+                                <input type="text" id="main-search-input" placeholder="What service are you looking for? (e.g., Logo Design, Tour Guide)" class="w-full text-gray-800 p-3 rounded-md md:rounded-none md:rounded-l-md focus:outline-none focus:ring-2 focus:ring-teal-500">
+                                <button id="main-search-btn" class="w-full md:w-auto bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-8 py-3 mt-2 md:mt-0 rounded-md md:rounded-none md:rounded-r-md hover:from-teal-600 hover:to-cyan-700 transition duration-300 font-semibold">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div id="view-container">
+                    <section id="categories-view" class="py-20 bg-white">
+                        <div class="container mx-auto px-6">
+                            <h2 id="categories-section" class="text-3xl font-bold text-center mb-12">Explore Popular Categories</h2>
+                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                                <div class="category-card" data-category="Graphic & Design"><img src="https://picsum.photos/seed/design/400/300" alt="Graphic & Design" class="w-full h-32 object-cover rounded-t-lg"><div class="p-4 text-center bg-gray-50 rounded-b-lg"><h3 class="text-lg font-semibold">Graphic & Design</h3></div></div>
+                                <div class="category-card" data-category="Digital Marketing"><img src="https://picsum.photos/seed/marketing/400/300" alt="Digital Marketing" class="w-full h-32 object-cover rounded-t-lg"><div class="p-4 text-center bg-gray-50 rounded-b-lg"><h3 class="text-lg font-semibold">Digital Marketing</h3></div></div>
+                                <div class="category-card" data-category="Writing & Content"><img src="https://picsum.photos/seed/writing/400/300" alt="Writing & Content" class="w-full h-32 object-cover rounded-t-lg"><div class="p-4 text-center bg-gray-50 rounded-b-lg"><h3 class="text-lg font-semibold">Writing & Content</h3></div></div>
+                                <div class="category-card" data-category="Website Development"><img src="https://picsum.photos/seed/code/400/300" alt="Website Development" class="w-full h-32 object-cover rounded-t-lg"><div class="p-4 text-center bg-gray-50 rounded-b-lg"><h3 class="text-lg font-semibold">Website Development</h3></div></div>
+                                <div class="category-card" data-category="Photography"><img src="https://picsum.photos/seed/camera/400/300" alt="Photography" class="w-full h-32 object-cover rounded-t-lg"><div class="p-4 text-center bg-gray-50 rounded-b-lg"><h3 class="text-lg font-semibold">Photography</h3></div></div>
+                                <div class="category-card" data-category="Personal Training"><img src="https://picsum.photos/seed/fitness/400/300" alt="Personal Training" class="w-full h-32 object-cover rounded-t-lg"><div class="p-4 text-center bg-gray-50 rounded-b-lg"><h3 class="text-lg font-semibold">Personal Training</h3></div></div>
+                                <div class="category-card" data-category="Yoga Instruction"><img src="https://picsum.photos/seed/yoga/400/300" alt="A person in a yoga pose" class="w-full h-32 object-cover rounded-t-lg"><div class="p-4 text-center bg-gray-50 rounded-b-lg"><h3 class="text-lg font-semibold">Yoga Instruction</h3></div></div>
+                                <div class="category-card" data-category="Tour and Package"><img src="https://picsum.photos/seed/travel/400/300" alt="Tour and Package" class="w-full h-32 object-cover rounded-t-lg"><div class="p-4 text-center bg-gray-50 rounded-b-lg"><h3 class="text-lg font-semibold">Tour and Package</h3></div></div>
+                                <div class="category-card" data-category="Health Check"><img src="https://picsum.photos/seed/health/400/300" alt="Health Check" class="w-full h-32 object-cover rounded-t-lg"><div class="p-4 text-center bg-gray-50 rounded-b-lg"><h3 class="text-lg font-semibold">Health Check</h3></div></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                
+                <div id="subview-container" class="hidden">
+                    <section id="talent-list" class="py-20 bg-gray-50"><div class="container mx-auto px-6"><div class="flex flex-col md:flex-row justify-between md:items-center mb-12"><h2 id="talent-list-title" class="text-3xl font-bold mb-4 md:mb-0"></h2><button id="back-to-categories" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-300 transition duration-300 self-start md:self-center">← Back to All Categories</button></div><div id="talent-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div></div></section>
+                    <section id="tour-creation-view" class="py-20 bg-gray-50">
+                        <div class="container mx-auto px-6">
+                            <div class="flex justify-between items-center mb-8"><h2 class="text-3xl font-bold">Create a New Tour Package</h2><button id="tour-back-btn" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-300 transition duration-300">← Back</button></div>
+                            <div id="tour-form-wrapper" class="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
+                                <form id="tour-creation-form"><div class="space-y-6"><div><label for="tripName" class="block text-sm font-medium text-gray-700">Trip Title</label><input type="text" id="tripName" placeholder="e.g., Weekend Trek to Nandi Hills" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500" required></div><div><label for="tripDestination" class="block text-sm font-medium text-gray-700">Destination</label><input type="text" id="tripDestination" placeholder="e.g., Nandi Hills, Karnataka" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500" required></div><div><label for="tripPrice" class="block text-sm font-medium text-gray-700">Price Per Head (₹)</label><input type="number" id="tripPrice" placeholder="e.g., 1500" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500" required></div><div><label class="block text-sm font-medium text-gray-700">Trip Image</label><div id="image-drop-zone" class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer transition-colors duration-300 hover:border-teal-400"><div id="image-upload-prompt" class="space-y-1 text-center"><svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><div class="flex text-sm text-gray-600"><p class="pl-1">Drag & drop, paste, or <span class="font-medium text-teal-600 hover:text-teal-500">click to upload</span></p></div><p class="text-xs text-gray-500">PNG, JPG, GIF</p></div></div><input id="image-upload-input" type="file" class="hidden" accept="image/*"></div><div><label for="tripDescription" class="block text-sm font-medium text-gray-700">Trip Description</label><textarea id="tripDescription" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500" required></textarea></div></div><div class="mt-8"><button type="submit" class="w-full bg-gradient-to-r from-teal-500 to-cyan-600 text-white py-3 px-4 rounded-md font-semibold text-lg hover:from-teal-600 hover:to-cyan-700 transition duration-300">Create Trip</button></div></form>
+                            </div>
+                            <div id="trip-preview-container" class="hidden max-w-2xl mx-auto"><h3 class="text-2xl font-bold mb-4 text-center">Your Trip is Live!</h3><div id="trip-preview-card" class="bg-white rounded-lg shadow-lg overflow-hidden"></div><div class="mt-4 flex space-x-4"><button id="join-trip-btn" class="flex-1 w-full bg-emerald-500 text-white py-2 px-4 rounded-md font-semibold hover:bg-emerald-600 transition duration-300">Join Trip</button><button id="message-organizer-btn" class="flex-1 w-full bg-gray-700 text-white py-2 px-4 rounded-md font-semibold hover:bg-gray-800 transition duration-300">Message Organizer</button></div><button id="edit-trip-btn" class="w-full mt-4 bg-gray-200 text-gray-800 py-2 px-4 rounded-md font-semibold hover:bg-gray-300 transition duration-300">Edit Trip</button></div>
+                        </div>
+                    </section>
+                    
+                    <section id="student-profile-view" class="hidden py-20 bg-gray-50">
+                        <div id="student-profile-content" class="container mx-auto px-6"></div>
+                    </section>
+                </div>
+
+                <div id="main-page-content">
+                    <section class="py-20 bg-gray-50"><div class="container mx-auto px-6"><h2 class="text-3xl font-bold text-center mb-12">Meet Some of Our Top Student Talent</h2><div id="featured-talent-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div></div></section>
+                    <section class="py-20 bg-white"><div class="container mx-auto px-6"><h2 class="text-3xl font-bold text-center mb-12">Real Skills, Real Income</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center"><div class="bg-gray-50 p-8 rounded-lg shadow-lg"><img src="https://picsum.photos/seed/Kavita/100/100" class="w-24 h-24 rounded-full mx-auto -mt-20 mb-4 border-4 border-white" alt="Kavita J."><h3 class="font-bold text-lg">Kavita J.</h3><p class="text-sm text-gray-500 mb-2">Content Writer</p><p class="italic text-gray-700">"I earned ₹8,000 in my first month writing blog posts for local startups. Leloyaha gave me the confidence to start my freelance career!"</p></div><div class="bg-gray-50 p-8 rounded-lg shadow-lg"><img src="https://picsum.photos/seed/Suresh/100/100" class="w-24 h-24 rounded-full mx-auto -mt-20 mb-4 border-4 border-white" alt="Suresh R."><h3 class="font-bold text-lg">Suresh R.</h3><p class="text-sm text-gray-500 mb-2">Web Developer</p><p class="italic text-gray-700">"Building a small website for a client was an amazing experience. It was my first paid project and it's now in my portfolio."</p></div><div class="bg-gray-50 p-8 rounded-lg shadow-lg"><img src="https://picsum.photos/seed/Deepa/100/100" class="w-24 h-24 rounded-full mx-auto -mt-20 mb-4 border-4 border-white" alt="Deepa N."><h3 class="font-bold text-lg">Deepa N.</h3><p class="text-sm text-gray-500 mb-2">Photographer</p><p class="italic text-gray-700">"I was hired for a birthday party shoot through Leloyaha. The platform is simple and payments are secure. Highly recommended!"</p></div></div></div></section>
+                    <section class="py-20 bg-gray-50"><div class="container mx-auto px-6"><h2 class="text-3xl font-bold text-center mb-12">What Our Clients Say</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><div class="bg-white p-8 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform duration-300"><p class="text-gray-600 mb-6 italic">"Leloyaha connected us with a fantastic student designer who brought our vision to life faster than we could have imagined. An absolutely seamless experience!"</p><div class="flex items-center"><img src="https://picsum.photos/seed/Ananya/100/100" class="w-12 h-12 rounded-full mr-4" alt="Client 1"><div><p class="font-bold">Ananya Sharma</p><p class="text-sm text-gray-500">Founder, Brew Cafe</p></div></div></div><div class="bg-white p-8 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform duration-300"><p class="text-gray-600 mb-6 italic">"Finding a reliable part-time driver was a hassle. With Leloyaha, we found a verified student driver who was professional and punctual. Highly recommended!"</p><div class="flex items-center"><img src="https://picsum.photos/seed/Vikram/100/100" class="w-12 h-12 rounded-full mr-4" alt="Client 2"><div><p class="font-bold">Vikram Singh</p><p class="text-sm text-gray-500">Local Resident</p></div></div></div><div class="bg-white p-8 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform duration-300"><p class="text-gray-600 mb-6 italic">"The quality of content from a student writer was top-notch. It's an incredible platform for startups on a budget to access fresh, creative talent."</p><div class="flex items-center"><img src="https://picsum.photos/seed/PriyaD/100/100" class="w-12 h-12 rounded-full mr-4" alt="Client 3"><div><p class="font-bold">Priya Desai</p><p class="text-sm text-gray-500">Marketing Head, TechVibes</p></div></div></div></div></div></section>
+                    <section id="how-it-works" class="py-20 bg-white"><div class="container mx-auto px-6"><h2 class="text-3xl font-bold text-center mb-12">Get Your Project Done in 3 Simple Steps</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center"><div><div class="flex items-center justify-center h-20 w-20 bg-teal-100 text-teal-600 rounded-full mx-auto mb-6"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div><h3 class="text-xl font-semibold mb-2">1. Post a Job</h3><p class="text-gray-600">Describe the task you need done. It's free, simple, and takes just a few minutes to get started.</p></div><div><div class="flex items-center justify-center h-20 w-20 bg-teal-100 text-teal-600 rounded-full mx-auto mb-6"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div><h3 class="text-xl font-semibold mb-2">2. Hire a Student</h3><p class="text-gray-600">Browse through verified student profiles, check their reviews, and hire the perfect talent for your needs.</p></div><div><div class="flex items-center justify-center h-20 w-20 bg-teal-100 text-teal-600 rounded-full mx-auto mb-6"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div><h3 class="text-xl font-semibold mb-2">3. Pay Securely</h3><p class="text-gray-600">Pay through our secure platform only after the work is completed and you are 100% satisfied.</p></div></div></div></section>
+                    <section id="registration-section" class="py-20 bg-gray-50">
+                        <div class="container mx-auto px-6">
+                            <div class="text-center mb-12"><h2 class="text-3xl font-bold">Join Leloyaha Today!</h2><p class="text-lg text-gray-600 mt-2">Start your journey to earn, learn, and grow.</p></div>
+                            <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                                <form id="student-registration-form"><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label><input type="text" id="fullName" name="fullName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500" required></div><div><label for="collegeName" class="block text-sm font-medium text-gray-700">College Name</label><input type="text" id="collegeName" name="collegeName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500" required></div><div><label for="email" class="block text-sm font-medium text-gray-700">Email Address</label><input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500" required></div><div><label for="primarySkill" class="block text-sm font-medium text-gray-700">Primary Skill</label><select id="primarySkill" name="primarySkill" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500" required><option>Graphic & Design</option><option>Digital Marketing</option><option>Writing & Content</option><option>Website Development</option><option>Photography</option><option>Personal Training</option><option>Yoga Instruction</option><option>Tour and Package</option><option>Health Check</option></select></div></div><div class="mt-6"><label for="bio" class="block text-sm font-medium text-gray-700">Tell us about yourself (Your Bio)</label><textarea id="bio" name="bio" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500" required></textarea></div><div class="mt-6"><button type="submit" class="w-full bg-gradient-to-r from-teal-500 to-cyan-600 text-white py-3 px-4 rounded-md font-semibold text-lg hover:from-teal-600 hover:to-cyan-700 transition duration-300">Create My Account</button></div></form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+
+        <!-- ADMIN DATA VIEW (Hidden by default) -->
+        <div id="admin-data-view" class="hidden"><header class="bg-white shadow-sm sticky top-0 z-50"><nav class="container mx-auto px-6 py-4 flex justify-between items-center"><a href="#" class="text-2xl font-bold text-teal-600">Leloyaha (Admin)</a><button id="back-to-home-btn" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-300 transition duration-300">Back to Home</button></nav></header><main class="container mx-auto p-6"><h1 class="text-3xl font-bold mb-6">New Student Application</h1><div class="bg-white p-6 rounded-lg shadow-md"><div class="overflow-x-auto"><table class="min-w-full divide-y divide-gray-200"><thead class="bg-gray-50"><tr><th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Field</th><th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted Data</th></tr></thead><tbody id="admin-data-table" class="bg-white divide-y divide-gray-200"></tbody></table></div><div class="mt-6 text-center"><button id="view-student-dashboard-btn" class="bg-teal-500 text-white px-6 py-2 rounded-md hover:bg-teal-600 transition duration-300">View Student's Dashboard</button></div></div></main></div>
+
+        <!-- STUDENT DASHBOARD (Hidden by default) -->
+        <div id="student-view" class="hidden">
+            <header class="bg-white shadow-sm sticky top-0 z-50"><nav class="container mx-auto px-6 py-4 flex justify-between items-center"><a href="#" class="text-2xl font-bold text-teal-600">Leloyaha</a><div class="hidden md:flex items-center space-x-4"><a href="#" class="student-nav-link text-gray-600 hover:text-teal-600" data-view="student-dashboard-main">My Dashboard</a><a href="#" class="student-nav-link text-gray-600 hover:text-teal-600" data-view="student-find-jobs">Find Jobs</a><a href="#" class="student-nav-link text-gray-600 hover:text-teal-600" data-view="student-profile-page">My Profile</a><button class="logout-btn bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300">Log Out</button></div></nav></header>
+            <main id="student-dashboard" class="container mx-auto p-6">
+                <div id="student-dashboard-main">
+                    <div class="bg-white p-8 rounded-lg shadow-md mb-8"><h1 id="student-welcome-name" class="text-3xl font-bold">Hi Ramesh 👋</h1><p class="text-gray-600 mt-1">"The secret of getting ahead is getting started." Let's make today productive!</p></div>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8"><div class="lg:col-span-1 space-y-8"><div class="bg-white p-6 rounded-lg shadow-md"><h2 class="text-xl font-bold mb-4">Earnings Snapshot</h2><div class="text-center bg-emerald-50 p-4 rounded-lg"><p class="text-sm text-emerald-700">This Month's Earnings</p><p class="text-4xl font-bold text-emerald-600">₹3,200</p></div><div class="mt-4"><p class="text-sm text-gray-600 mb-1">Monthly Goal: ₹5,000</p><div class="progress-bar-bg h-3 w-full"><div class="progress-bar-fill bg-emerald-500" style="width: 64%;"></div></div><p class="text-xs text-gray-500 mt-1 text-center">You're just 2 more jobs away!</p></div></div><div class="bg-white p-6 rounded-lg shadow-md"><h2 class="text-xl font-bold mb-4">Achievements</h2><div class="flex flex-wrap gap-4"><div class="text-center p-2 bg-yellow-100 rounded-lg" title="Completed your first job!"><span class="text-3xl">🎉</span><p class="text-xs">First Job</p></div><div class="text-center p-2 bg-blue-100 rounded-lg" title="Received a 5-star rating!"><span class="text-3xl">⭐</span><p class="text-xs">5-Star Rated</p></div><div class="text-center p-2 bg-gray-200 rounded-lg opacity-50" title="Complete 5 jobs to unlock"><span class="text-3xl">💼</span><p class="text-xs">Rising Talent</p></div></div></div></div><div class="lg:col-span-2 space-y-8"><div class="bg-white p-6 rounded-lg shadow-md"><h2 class="text-xl font-bold mb-4">Recommended For You</h2><div id="job-recommendations-list" class="space-y-4"></div></div><div class="bg-white p-6 rounded-lg shadow-md"><h2 class="text-xl font-bold mb-4">Community Spotlight</h2><div class="bg-cyan-50 border-l-4 border-cyan-500 p-4 rounded-md"><p class="text-gray-700">"Priya M. just completed her 5th social media project! 🎉"</p><a href="#" class="text-cyan-600 font-semibold hover:underline mt-2 inline-block text-sm">See her story →</a></div></div></div></div>
+                </div>
+                <div id="student-find-jobs" class="hidden">
+                    <h2 class="text-3xl font-bold mb-6">Find New Opportunities</h2>
+                    <input type="text" id="student-job-search" placeholder="Search for jobs by skill (e.g., writing, design)" class="w-full p-3 mb-6 rounded-md border border-gray-300">
+                    <div id="student-job-list" class="space-y-4"></div>
+                </div>
+                <div id="student-profile-page" class="hidden"><h2 class="text-3xl font-bold mb-6">My Profile</h2><p>Student profile details will go here.</p></div>
+            </main>
+        </div>
+        
+        <!-- CLIENT DASHBOARD (Hidden by default) -->
+        <div id="client-view" class="hidden">
+            <header class="bg-white shadow-md sticky top-0 z-50"><nav class="container mx-auto px-6 py-4 flex justify-between items-center"><a href="#" class="text-2xl font-bold text-teal-600">Leloyaha</a><div class="hidden md:flex items-center space-x-4"><a href="#" class="client-nav-link text-gray-600 hover:text-teal-600" data-view="client-dashboard-main">My Dashboard</a><a href="#" class="client-nav-link text-gray-600 hover:text-teal-600" data-view="client-find-talent">Find Talent</a><a href="#" class="client-nav-link text-gray-600 hover:text-teal-600" data-view="client-post-job">Post a Job</a><button class="logout-btn bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300">Log Out</button></div></nav></header>
+            <main id="client-dashboard" class="container mx-auto p-6">
+                 <div id="client-dashboard-main">
+                    <div class="bg-gradient-to-r from-gray-700 to-gray-900 text-white p-8 rounded-lg shadow-lg mb-8"><h1 class="text-3xl font-bold">Hi Ankit 👋 Need talent fast? Hire verified students today.</h1></div>
+                    <div id="client-main-dashboard-content" class="grid grid-cols-1 lg:grid-cols-3 gap-8"><div class="lg:col-span-2 space-y-8"><div class="bg-white p-6 rounded-lg shadow-md"><h2 class="text-xl font-bold mb-4">Recommended Students for You</h2><div class="space-y-4"><div class="border p-4 rounded-lg flex items-center justify-between hover:bg-gray-50"><div class="flex items-center"><img src="https://picsum.photos/seed/AkashS/100/100" class="w-16 h-16 rounded-full mr-4" alt="Akash S."><div><h3 class="font-bold text-lg flex items-center">Akash S. <span class="ml-2 bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Verified</span></h3><p class="text-sm text-gray-500">Graphic Designer - ★ 4.9</p></div></div><button class="view-profile-btn bg-teal-100 text-teal-700 px-4 py-1 rounded-md text-sm font-semibold hover:bg-teal-200" data-student-name="Akash S.">View Profile</button></div><div class="border p-4 rounded-lg flex items-center justify-between hover:bg-gray-50"><div class="flex items-center"><img src="https://picsum.photos/seed/PriyaM/100/100" class="w-16 h-16 rounded-full mr-4" alt="Priya M."><div><h3 class="font-bold text-lg flex items-center">Priya M. <span class="ml-2 bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Verified</span></h3><p class="text-sm text-gray-500">Social Media Marketer - ★ 4.8</p></div></div><button class="view-profile-btn bg-teal-100 text-teal-700 px-4 py-1 rounded-md text-sm font-semibold hover:bg-teal-200" data-student-name="Priya M.">View Profile</button></div></div></div></div><div class="lg:col-span-1"><div class="bg-white p-6 rounded-lg shadow-md"><h2 class="text-xl font-bold mb-4">Job Management</h2><div class="space-y-4" id="job-management-list"><div><h3 class="font-semibold">Logo for Brew Cafe</h3><p class="text-sm text-gray-600"><span class="font-bold text-green-600">2 applicants</span> pending review.</p></div><hr><div><h3 class="font-semibold">Social Media Posts</h3><p class="text-sm text-gray-600"><span class="font-bold text-blue-600">1 interview</span> scheduled.</p></div></div></div></div></div>
+                 </div>
+                 <div id="client-find-talent" class="hidden"><h2 class="text-3xl font-bold mb-6">Find Talent</h2><input type="text" id="client-talent-search" placeholder="Search by skill or name..." class="w-full p-3 mb-6 rounded-md border border-gray-300"><div id="client-talent-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div></div>
+                 <div id="client-post-job" class="hidden"><div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto"><h2 class="text-2xl font-bold mb-6">Post a New Job</h2><form id="job-posting-form"><div class="space-y-4"><input type="text" id="jobTitle" placeholder="Job Title (e.g., Logo Designer)" class="w-full p-3 rounded-md border border-gray-300" required><textarea id="jobDescription" rows="4" placeholder="Job Description..." class="w-full p-3 rounded-md border border-gray-300" required></textarea><input type="number" id="jobBudget" placeholder="Budget (₹)" class="w-full p-3 rounded-md border border-gray-300" required><button type="submit" class="w-full bg-teal-500 text-white font-semibold py-3 rounded-md hover:bg-teal-600">Submit Job</button></div></form></div></div>
+            </main>
+        </div>
+
+        <!-- Messaging Modal -->
+        <div id="chat-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+            <div class="bg-white rounded-lg shadow-xl w-full max-w-lg">
+                <div id="chat-header" class="p-4 border-b flex justify-between items-center"></div>
+                <div id="chat-messages" class="p-4 h-64 overflow-y-auto"></div>
+                <div class="p-4 border-t">
+                    <div class="flex"><input type="text" id="chat-input" placeholder="Type a message..." class="flex-1 p-2 border rounded-l-md"><button id="chat-send-btn" class="bg-teal-500 text-white px-4 rounded-r-md">Send</button></div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bg-gray-800 text-white py-10">
+            <div class="container mx-auto px-6 text-center">
+                <a href="#" class="text-3xl font-bold text-white mb-4 inline-block">Leloyaha</a>
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.415 2.175 8.796 2.163 12 2.163zm0 1.626c-3.159 0-3.51.01-4.745.068-2.628.119-3.928 1.424-4.045 4.045-.058 1.235-.068 1.588-.068 4.745s.01 3.51.068 4.745c.117 2.622 1.417 3.928 4.045 4.045 1.235.058 1.586.068 4.745.068s3.51-.01 4.745-.068c2.628-.119 3.928-1.424 4.045-4.045.058-1.235.068-1.588.068-4.745s-.01-3.51-.068-4.745c-.117-2.622-1.417-3.928-4.045-4.045-1.235-.058-1.586-.068-4.745-.068zm0 5.478a5.163 5.163 0 100 10.326 5.163 5.163 0 000-10.326zm0 1.626a3.537 3.537 0 110 7.072 3.537 3.537 0 010-7.072z" clip-rule="evenodd" /></svg></a>
+                </div>
+                <div class="flex justify-center space-x-4 mb-4 text-sm text-gray-400"><a href="#" class="hover:text-white">About Us</a><span>&middot;</span><a href="#" class="hover:text-white">Contact</a><span>&middot;</span><a href="#" class="hover:text-white">FAQs</a><span>&middot;</span><a href="#" class="hover:text-white">Terms of Service</a></div>
+                <p class="text-sm text-gray-500">&copy; 2025 Leloyaha. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script type="module">
+        // --- DATABASE ---
+        const students = [
+            { name: "Akash S.", category: "Graphic & Design", rating: 4.9, bio: "2+ years of experience in logo design and branding. Proficient in Adobe Suite.", imageSeed: "Akash", verified: true, portfolio: ["Logo for Cafe", "App UI Mockup"] },{ name: "Neha Sharma", category: "Graphic & Design", rating: 4.8, bio: "Specializes in modern UI/UX design for mobile apps. Passionate about clean interfaces.", imageSeed: "Neha", verified: true, portfolio: ["E-commerce App Design", "Website Redesign"] },{ name: "Ravi Kumar", category: "Graphic & Design", rating: 4.7, bio: "Creative illustrator and poster designer. Loves bringing ideas to life with vibrant colors.", imageSeed: "Ravi", verified: true, portfolio: ["Event Poster", "Children's Book Illustrations"] },{ name: "Priya M.", category: "Digital Marketing", rating: 4.8, bio: "Expert in social media management and content strategy across Instagram and Facebook.", imageSeed: "Priya", verified: true, portfolio: ["Instagram Growth Campaign", "Facebook Ads Strategy"] },{ name: "Amit Singh", category: "Digital Marketing", rating: 4.9, bio: "Certified Google Ads specialist. Focused on driving traffic and generating leads.", imageSeed: "Amit", verified: true, portfolio: ["Google Search Ads Campaign", "Analytics Report"] },{ name: "Sunita Rao", category: "Digital Marketing", rating: 4.6, bio: "Skilled in SEO and email marketing campaigns that deliver results.", imageSeed: "Sunita", verified: true, portfolio: ["SEO Audit", "Email Newsletter Design"] },{ name: "Kavita Joshi", category: "Writing & Content", rating: 4.9, bio: "Creative writer with experience in blog posts, articles, and website copy.", imageSeed: "Kavita", verified: true, portfolio: ["Blog Post on Tech", "Website About Us Page"] },{ name: "Rajesh Gupta", category: "Writing & Content", rating: 4.7, bio: "Technical writer who can simplify complex topics. Excellent research skills.", imageSeed: "Rajesh", verified: true, portfolio: ["User Manual for Software", "Research Paper Summary"] },{ name: "Priya Singh", category: "Writing & Content", rating: 4.8, bio: "Content creator specializing in engaging social media captions and scripts.", imageSeed: "PriyaS", verified: true, portfolio: ["Instagram Caption Series", "YouTube Video Script"] },{ name: "Suresh Reddy", category: "Website Development", rating: 4.9, bio: "Full-stack developer specializing in React and Node.js. Builds fast, responsive websites.", imageSeed: "Suresh", verified: true, portfolio: ["React E-commerce Site", "Node.js API"] },{ name: "Meera Iyer", category: "Website Development", rating: 4.8, bio: "Frontend developer with a keen eye for design. Expert in HTML, CSS, and JavaScript.", imageSeed: "Meera", verified: true, portfolio: ["Portfolio Website", "Interactive Landing Page"] },{ name: "Arun Kumar", category: "Website Development", rating: 4.7, bio: "WordPress expert who can build and customize themes and plugins for any business need.", imageSeed: "Arun", verified: true, portfolio: ["Business Website (WordPress)", "Custom Plugin"] },{ name: "Vikram Kumar", category: "Photography", rating: 5.0, bio: "Event and portrait photographer with professional gear. Captures moments beautifully.", imageSeed: "Vikram", verified: true, portfolio: ["Wedding Photo Album", "Corporate Event Photos"] },{ name: "Deepa Nair", category: "Photography", rating: 4.8, bio: "Specializes in product and food photography for e-commerce and social media.", imageSeed: "Deepa", verified: true, portfolio: ["Food Photography for Restaurant", "E-commerce Product Shots"] },{ name: "Sanjay Patel", category: "Photography", rating: 4.7, bio: "Drone photographer and videographer, perfect for real estate and events.", imageSeed: "Sanjay", verified: true, portfolio: ["Real Estate Drone Video", "Event Aerial Shots"] },{ name: "Arjun Mehta", category: "Personal Training", rating: 4.9, bio: "Certified personal trainer focused on strength training and body conditioning.", imageSeed: "Arjun", verified: true, portfolio: ["Client Transformation Photos", "Workout Plan Sample"] },{ name: "Sneha Reddy", category: "Personal Training", rating: 4.8, bio: "Fitness coach specializing in HIIT and functional training for all fitness levels.", imageSeed: "Sneha", verified: true, portfolio: ["HIIT Workout Video", "Client Testimonials"] },{ name: "Rahul Verma", category: "Personal Training", rating: 4.9, bio: "Helps clients achieve their weight loss goals through customized diet and workout plans.", imageSeed: "Rahul", verified: true, portfolio: ["Diet Plan Sample", "Before/After Photos"] },{ name: "Pooja Desai", category: "Yoga Instruction", rating: 5.0, bio: "Certified yoga instructor with expertise in Vinyasa and Hatha yoga for all levels.", imageSeed: "Pooja", verified: true, portfolio: ["Vinyasa Flow Video", "Meditation Guide"] },{ name: "Aditi Shah", category: "Yoga Instruction", rating: 4.9, bio: "Specializes in meditation and mindfulness practices for stress reduction.", imageSeed: "Aditi", verified: true, portfolio: ["Mindfulness Workshop Outline", "Guided Meditation Audio"] },{ name: "Rishi Sharma", category: "Yoga Instruction", rating: 4.8, bio: "Experienced in power yoga and flexibility training for athletes and beginners.", imageSeed: "Rishi", verified: true, portfolio: ["Power Yoga Class Recording", "Flexibility Program"] },{ name: "Rohan K.", category: "Tour and Package", rating: 5.0, bio: "Expert in organizing local city tours and weekend getaways. Let's explore!", imageSeed: "Rohan", verified: true, portfolio: ["Jaipur Weekend Itinerary", "Local Food Tour Plan"] },{ name: "Imran Khan", category: "Tour and Package", rating: 4.8, bio: "I create affordable travel packages for students. Adventure awaits!", imageSeed: "Imran", verified: true, portfolio: ["Manali Trek Package", "Goa Budget Trip Plan"] },{ name: "Manoj Kumar", category: "Tour and Package", rating: 4.9, bio: "Your friendly guide for historical walks and food tours around the city.", imageSeed: "Manoj", verified: true, portfolio: ["Delhi Heritage Walk Plan", "Street Food Tour Map"] },{ name: "Sunita Patel", category: "Health Check", rating: 4.9, bio: "Nursing student available for basic health checkups like blood pressure and sugar monitoring.", imageSeed: "SunitaP", verified: true, portfolio: ["Health Camp Volunteer Certificate", "Basic Health Checkup Procedure"] }, { name: "Ravi Sharma", category: "Health Check", rating: 4.8, bio: "Certified in First Aid and CPR. Available for event support and basic health assistance.", imageSeed: "RaviS", verified: true, portfolio: ["First Aid Certification", "Event Medical Support Plan"] }, { name: "Anjali Mehta", category: "Health Check", rating: 4.9, bio: "Physiotherapy student offering assistance with basic exercises and mobility support for the elderly.", imageSeed: "Anjali", verified: true, portfolio: ["Basic Exercise Guide", "Client Mobility Report"] },
+        ];
+        
+        let jobs = [
+            { title: "Logo Designer for a New Cafe", company: "Brew Cafe", description: "We need a creative logo for our new coffee shop. Looking for a modern and minimalist design." },
+            { title: "Social Media Post Designer", company: "TechVibes", description: "Looking for a student to design 10 social media posts per week for our Instagram page." }
+        ];
+
+        // --- DOM ELEMENTS ---
+        const loggedOutView = document.getElementById('logged-out-view');
+        const studentView = document.getElementById('student-view');
+        const clientView = document.getElementById('client-view');
+        const loginStudentBtn = document.getElementById('login-student-btn');
+        const loginClientBtn = document.getElementById('login-client-btn');
+        const logoutBtns = document.querySelectorAll('.logout-btn');
+        const categoryCards = document.querySelectorAll('.category-card');
+        const talentListSection = document.getElementById('talent-list');
+        const talentListTitle = document.getElementById('talent-list-title');
+        const talentGrid = document.getElementById('talent-grid');
+        const backToCategoriesBtn = document.getElementById('back-to-categories');
+        const registrationForm = document.getElementById('student-registration-form');
+        const adminDataView = document.getElementById('admin-data-view');
+        const adminDataTable = document.getElementById('admin-data-table');
+        const backToHomeBtn = document.getElementById('back-to-home-btn');
+        const viewStudentDashboardBtn = document.getElementById('view-student-dashboard-btn');
+        const studentWelcomeName = document.getElementById('student-welcome-name');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLoginStudentBtn = document.getElementById('mobile-login-student-btn');
+        const mobileLoginClientBtn = document.getElementById('mobile-login-client-btn');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+        const tourCreationView = document.getElementById('tour-creation-view');
+        const tourCreationForm = document.getElementById('tour-creation-form');
+        const tripPreviewContainer = document.getElementById('trip-preview-container');
+        const tripPreviewCard = document.getElementById('trip-preview-card');
+        const tourBackBtn = document.getElementById('tour-back-btn');
+        const viewContainer = document.getElementById('view-container');
+        const mainPageContent = document.getElementById('main-page-content');
+        const categoriesView = document.getElementById('categories-view');
+        const imageDropZone = document.getElementById('image-drop-zone');
+        const imageUploadInput = document.getElementById('image-upload-input');
+        const tourFormWrapper = document.getElementById('tour-form-wrapper');
+        const studentProfileView = document.getElementById('student-profile-view');
+        const studentProfileContent = document.getElementById('student-profile-content');
+        const featuredTalentGrid = document.getElementById('featured-talent-grid');
+        const mainSearchInput = document.getElementById('main-search-input');
+        const mainSearchBtn = document.getElementById('main-search-btn');
+        const clientMainDashboardContent = document.getElementById('client-main-dashboard-content');
+        const jobPostingForm = document.getElementById('job-posting-form');
+        const jobManagementList = document.getElementById('job-management-list');
+        const jobRecommendationsList = document.getElementById('job-recommendations-list');
+        const chatModal = document.getElementById('chat-modal');
+        const studentNavLinks = document.querySelectorAll('.student-nav-link');
+        const clientNavLinks = document.querySelectorAll('.client-nav-link');
+        const studentDashboardMain = document.getElementById('student-dashboard-main');
+        const studentFindJobs = document.getElementById('student-find-jobs');
+        const studentProfilePage = document.getElementById('student-profile-page');
+        const clientDashboardMain = document.getElementById('client-dashboard-main');
+        const clientFindTalent = document.getElementById('client-find-talent');
+        const clientPostJob = document.getElementById('client-post-job');
+        const studentJobSearch = document.getElementById('student-job-search');
+        const studentJobList = document.getElementById('student-job-list');
+        const clientTalentSearch = document.getElementById('client-talent-search');
+        const clientTalentGrid = document.getElementById('client-talent-grid');
+        const subviewContainer = document.getElementById('subview-container');
+
+        let uploadedImageDataUrl = null;
+        let currentTripData = {};
+
+        // --- Reusable Component Functions ---
+        function createStudentCardHTML(student) {
+            const verifiedBadge = student.verified ? `<span class="ml-2 bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Verified</span>` : '';
+            return `
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-xl transition-all duration-300">
+                <img src="https://picsum.photos/seed/${student.imageSeed}/400/300" alt="Profile of ${student.name}" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-1 flex items-center">${student.name} ${verifiedBadge}</h3>
+                    <div class="flex items-center mb-4"><span class="text-yellow-500">★★★★★</span><span class="text-gray-600 ml-2">(${student.rating})</span></div>
+                    <p class="text-gray-600 mb-4 h-20 overflow-hidden">"${student.bio}"</p>
+                    <button class="view-profile-btn w-full text-center bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-4 py-2 rounded-md hover:from-teal-600 hover:to-cyan-700 transition duration-300 inline-block font-semibold" data-student-name="${student.name}">View Profile</button>
+                </div>
+            </div>`;
+        }
+        
+        // --- MOBILE MENU LOGIC ---
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // --- VIEW SWITCHING LOGIC ---
+        function showView(viewToShow) {
+            [studentView, clientView, adminDataView, loggedOutView].forEach(view => view.classList.add('hidden'));
+            viewToShow.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function showSubView(subViewToShow) {
+            viewContainer.classList.add('hidden');
+            subviewContainer.classList.remove('hidden');
+
+            [talentListSection, tourCreationView, studentProfileView].forEach(view => view.classList.add('hidden'));
+            subViewToShow.classList.remove('hidden');
+            window.scrollTo(0, subViewToShow.offsetTop - 100);
+        }
+        
+        const handleStudentLogin = () => {
+            studentWelcomeName.textContent = `Hi Ramesh 👋`;
+            renderJobs();
+            showView(studentView);
+        };
+
+        loginStudentBtn.addEventListener('click', handleStudentLogin);
+        mobileLoginStudentBtn.addEventListener('click', handleStudentLogin);
+        loginClientBtn.addEventListener('click', () => showView(clientView));
+        mobileLoginClientBtn.addEventListener('click', () => showView(clientView));
+        logoutBtns.forEach(btn => btn.addEventListener('click', () => showView(loggedOutView)));
+        backToHomeBtn.addEventListener('click', () => showView(loggedOutView));
+        viewStudentDashboardBtn.addEventListener('click', () => {
+            const nameCell = adminDataTable.querySelector('td:nth-child(2)');
+            if (nameCell) {
+                 const name = nameCell.textContent;
+                 studentWelcomeName.textContent = `Hi ${name.split(' ')[0]} 👋`;
+            }
+            showView(studentView);
+        });
+
+        // --- REGISTRATION LOGIC ---
+        registrationForm.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            const newStudent = {
+                name: data.fullName,
+                category: data.primarySkill,
+                rating: 5.0,
+                bio: data.bio,
+                imageSeed: data.fullName.replace(/\s/g, ''),
+                verified: true,
+                portfolio: ["New Member Portfolio Item 1", "New Member Portfolio Item 2"]
+            };
+            students.push(newStudent);
+            
+            adminDataTable.innerHTML = `
+                <tr><td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Full Name</td><td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${data.fullName}</td></tr>
+                <tr><td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">College</td><td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${data.collegeName}</td></tr>
+                <tr><td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Email</td><td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${data.email}</td></tr>
+                <tr><td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Primary Skill</td><td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${data.primarySkill}</td></tr>
+                <tr><td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Bio</td><td class="px-6 py-4 text-sm text-gray-500">${data.bio}</td></tr>
+            `;
+            studentWelcomeName.textContent = `Hi ${data.fullName.split(' ')[0]} 👋`;
+            showView(adminDataView);
+            event.target.reset();
+        });
+
+        // --- TOUR CREATION & IMAGE UPLOAD LOGIC ---
+        function handleFile(file) {
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    uploadedImageDataUrl = e.target.result;
+                    imageDropZone.innerHTML = `<img src="${uploadedImageDataUrl}" class="h-24 w-24 object-cover mx-auto rounded-md"> <p class="text-sm text-gray-500 mt-2">Image selected!</p>`;
+                    imageDropZone.classList.remove('border-dashed');
+                };
+                reader.readAsDataURL(file);
+            } else { alert('Please select an image file.'); }
+        }
+
+        imageDropZone.addEventListener('click', () => imageUploadInput.click());
+        imageUploadInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => { imageDropZone.addEventListener(eventName, (e) => { e.preventDefault(); e.stopPropagation(); }, false); });
+        ['dragenter', 'dragover'].forEach(eventName => { imageDropZone.addEventListener(eventName, () => imageDropZone.classList.add('drop-zone-active'), false); });
+        ['dragleave', 'drop'].forEach(eventName => { imageDropZone.addEventListener(eventName, () => imageDropZone.classList.remove('drop-zone-active'), false); });
+        imageDropZone.addEventListener('drop', (e) => handleFile(e.dataTransfer.files[0]));
+        document.addEventListener('paste', (e) => {
+             if (tourCreationView.classList.contains('hidden')) return;
+            const items = e.clipboardData.items;
+            for (const item of items) {
+                if (item.kind === 'file' && item.type.startsWith('image/')) { handleFile(item.getAsFile()); break; }
+            }
+        });
+
+        tourCreationForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (!uploadedImageDataUrl) { alert('Please upload an image for the trip.'); return; }
+            currentTripData = { name: document.getElementById('tripName').value, destination: document.getElementById('tripDestination').value, price: document.getElementById('tripPrice').value, description: document.getElementById('tripDescription').value, image: uploadedImageDataUrl };
+            renderTripPreview(currentTripData);
+            tourFormWrapper.classList.add('hidden');
+            tripPreviewContainer.classList.remove('hidden');
+        });
+
+        function renderTripPreview(data) {
+             tripPreviewCard.innerHTML = `
+                <img src="${data.image}" alt="${data.name}" class="w-full h-56 object-cover">
+                <div class="p-6"><h3 class="text-2xl font-bold mb-2">${data.name}</h3><p class="text-gray-600 mb-4">${data.destination}</p><p class="text-3xl font-bold text-teal-600 mb-4">₹${data.price} <span class="text-lg font-normal text-gray-500">/ head</span></p><p class="text-gray-700">${data.description}</p></div>`;
+        }
+
+        document.getElementById('edit-trip-btn').addEventListener('click', () => {
+            document.getElementById('tripName').value = currentTripData.name;
+            document.getElementById('tripDestination').value = currentTripData.destination;
+            document.getElementById('tripPrice').value = currentTripData.price;
+            document.getElementById('tripDescription').value = currentTripData.description;
+            imageDropZone.innerHTML = `<img src="${currentTripData.image}" class="h-24 w-24 object-cover mx-auto rounded-md"> <p class="text-sm text-gray-500 mt-2">Change image?</p>`;
+            imageDropZone.classList.remove('border-dashed');
+            tripPreviewContainer.classList.add('hidden');
+            tourFormWrapper.classList.remove('hidden');
+        });
+
+        const showCategoryView = () => {
+            viewContainer.classList.remove('hidden');
+            subviewContainer.classList.add('hidden');
+            window.scrollTo(0, categoriesView.offsetTop - 100);
+            tourCreationForm.reset();
+            uploadedImageDataUrl = null;
+            imageDropZone.innerHTML = `<div id="image-upload-prompt" class="space-y-1 text-center"><svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><div class="flex text-sm text-gray-600"><p class="pl-1">Drag & drop, paste, or <span class="font-medium text-teal-600 hover:text-teal-500">click to upload</span></p></div><p class="text-xs text-gray-500">PNG, JPG, GIF</p></div>`;
+            imageDropZone.classList.add('border-dashed');
+            tripPreviewContainer.classList.add('hidden');
+            tourFormWrapper.classList.remove('hidden');
+        };
+        
+        tourBackBtn.addEventListener('click', showCategoryView);
+        backToCategoriesBtn.addEventListener('click', showCategoryView);
+
+        // --- DYNAMIC CONTENT RENDERING ---
+        function renderFeaturedTalent() {
+            const featured = students.slice(0, 3);
+            featuredTalentGrid.innerHTML = featured.map(student => createStudentCardHTML(student)).join('');
+            addProfileButtonListeners();
+        }
+
+        function renderJobs(jobList = jobs) {
+            jobRecommendationsList.innerHTML = jobList.length > 0 ? jobList.map(job => `
+                <div class="border p-4 rounded-lg hover:bg-gray-50 transition duration-300 flex justify-between items-center">
+                    <div>
+                        <h3 class="font-bold text-lg">${job.title}</h3>
+                        <p class="text-sm text-gray-500">${job.company}</p>
+                    </div>
+                    <button class="bg-teal-500 text-white px-4 py-2 rounded-md text-sm hover:bg-teal-600">Apply Now</button>
+                </div>`).join('') : '<p>No jobs found.</p>';
+            studentJobList.innerHTML = jobRecommendationsList.innerHTML;
+        }
+        
+        // --- EVENT LISTENERS & INITIALIZATION ---
+        categoryCards.forEach(card => card.addEventListener('click', () => {
+            const category = card.dataset.category;
+            if (category === 'Tour and Package') {
+                showSubView(tourCreationView);
+                return;
+            }
+            const filteredStudents = students.filter(student => student.category === category);
+            talentListTitle.textContent = `Top Talent in ${category}`;
+            talentGrid.innerHTML = filteredStudents.map(student => createStudentCardHTML(student)).join('');
+            addProfileButtonListeners();
+            showSubView(talentListSection);
+        }));
+
+        mainSearchBtn.addEventListener('click', () => {
+            const searchTerm = mainSearchInput.value.toLowerCase();
+            if (!searchTerm) return;
+            const filteredStudents = students.filter(s => s.name.toLowerCase().includes(searchTerm) || s.category.toLowerCase().includes(searchTerm) || s.bio.toLowerCase().includes(searchTerm));
+            talentListTitle.textContent = `Search Results for "${mainSearchInput.value}"`;
+            talentGrid.innerHTML = filteredStudents.length > 0 ? filteredStudents.map(student => createStudentCardHTML(student)).join('') : `<p class="text-center col-span-full">No students found matching your search.</p>`;
+            addProfileButtonListeners();
+            showSubView(talentListSection);
+        });
+
+        function showStudentProfile(studentName) {
+            const student = students.find(s => s.name === studentName);
+            if (!student) return;
+            
+            studentProfileContent.innerHTML = `
+                <button id="back-to-list-btn" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-300 transition duration-300 mb-8">← Back</button>
+                <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:flex-shrink-0"><img class="h-48 w-full object-cover md:h-full md:w-48" src="https://picsum.photos/seed/${student.imageSeed}/400/300" alt="Profile of ${student.name}"></div>
+                        <div class="p-8">
+                            <div class="uppercase tracking-wide text-sm text-teal-500 font-semibold">${student.category}</div>
+                            <h1 class="block mt-1 text-3xl leading-tight font-bold text-black">${student.name}</h1>
+                            <div class="flex items-center my-2"><span class="text-yellow-500">★★★★★</span><span class="text-gray-600 ml-2">(${student.rating})</span></div>
+                            <p class="mt-4 text-gray-600">${student.bio}</p>
+                            <button class="message-btn mt-6 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-bold py-3 px-6 rounded-lg hover:from-teal-600 hover:to-cyan-700" data-student-name="${student.name}">Message ${student.name.split(' ')[0]}</button>
+                        </div>
+                    </div>
+                    <div class="p-8 border-t"><h3 class="text-xl font-bold mb-4">Portfolio</h3><div class="grid grid-cols-1 sm:grid-cols-2 gap-4">${student.portfolio.map(item => `<div class="bg-gray-100 p-3 rounded-md">${item}</div>`).join('')}</div></div>
+                </div>`;
+            
+            document.getElementById('back-to-list-btn').addEventListener('click', () => showSubView(talentListSection));
+            document.querySelector('.message-btn').addEventListener('click', (e) => openChat(e.target.dataset.studentName));
+            showSubView(studentProfileView);
+        }
+
+        function addProfileButtonListeners() {
+            document.querySelectorAll('.view-profile-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    showStudentProfile(e.target.dataset.studentName);
+                });
+            });
+        }
+        
+        jobPostingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newJob = { title: document.getElementById('jobTitle').value, company: "Your Company", description: document.getElementById('jobDescription').value };
+            jobs.unshift(newJob);
+            jobManagementList.innerHTML = jobs.map(job => `<div><h3 class="font-semibold">${job.title}</h3><p class="text-sm text-gray-600">0 applicants</p></div><hr>`).join('');
+            e.target.reset();
+            document.querySelectorAll('.client-dashboard-view').forEach(v => v.classList.add('hidden'));
+            clientDashboardMain.classList.remove('hidden');
+        });
+
+        // --- CHAT MODAL LOGIC ---
+        function openChat(studentName) {
+            const chatHeader = document.getElementById('chat-header');
+            const chatMessages = document.getElementById('chat-messages');
+            chatHeader.innerHTML = `<h3 class="text-lg font-bold">Chat with ${studentName}</h3><button id="close-chat-btn" class="text-gray-500 hover:text-gray-800">&times;</button>`;
+            chatMessages.innerHTML = `<div class="text-center text-gray-500 p-4">This is the beginning of your conversation.</div>`;
+            chatModal.classList.remove('hidden');
+            document.getElementById('close-chat-btn').addEventListener('click', () => chatModal.classList.add('hidden'));
+        }
+        
+        document.getElementById('chat-send-btn').addEventListener('click', () => {
+            const input = document.getElementById('chat-input');
+            if (input.value.trim() !== '') {
+                document.getElementById('chat-messages').innerHTML += `<div class="flex justify-end my-2"><p class="bg-teal-500 text-white p-2 rounded-lg max-w-xs">${input.value}</p></div>`;
+                input.value = '';
+                input.focus();
+            }
+        });
+
+        document.getElementById('join-trip-btn').addEventListener('click', () => alert('Thank you for your interest! The trip organizer will contact you soon.'));
+        document.getElementById('message-organizer-btn').addEventListener('click', () => openChat("the Tour Organizer"));
+        
+        // --- DASHBOARD NAVIGATION ---
+        studentNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const viewId = e.target.dataset.view;
+                [studentDashboardMain, studentFindJobs, studentProfilePage].forEach(view => view.classList.add('hidden'));
+                document.getElementById(viewId).classList.remove('hidden');
+            });
+        });
+
+        clientNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const viewId = e.target.dataset.view;
+                [clientDashboardMain, clientFindTalent, clientPostJob].forEach(view => view.classList.add('hidden'));
+                const viewToShow = document.getElementById(viewId);
+                viewToShow.classList.remove('hidden');
+
+                if (viewId === 'client-find-talent') {
+                    clientTalentGrid.innerHTML = students.map(student => createStudentCardHTML(student)).join('');
+                    addProfileButtonListeners();
+                }
+            });
+        });
+        
+        studentJobSearch.addEventListener('input', (e) => {
+             const searchTerm = e.target.value.toLowerCase();
+             const filteredJobs = jobs.filter(job => job.title.toLowerCase().includes(searchTerm) || job.description.toLowerCase().includes(searchTerm));
+             renderJobs(filteredJobs);
+        });
+        
+        clientTalentSearch.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredStudents = students.filter(s => s.name.toLowerCase().includes(searchTerm) || s.category.toLowerCase().includes(searchTerm) || s.bio.toLowerCase().includes(searchTerm));
+            clientTalentGrid.innerHTML = filteredStudents.length > 0 ? filteredStudents.map(student => createStudentCardHTML(student)).join('') : `<p>No students found.</p>`;
+            addProfileButtonListeners();
+        });
+
+
+        // Initial Render
+        renderFeaturedTalent();
+
+    </script>
+</body>
+</html>
+
